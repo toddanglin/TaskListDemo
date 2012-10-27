@@ -1,0 +1,291 @@
+.dropShadow(@config: 3px 3px 3px #333){
+	-webkit-box-shadow: @config;
+	-moz-box-shadow: @config;
+	box-shadow: @config;
+}
+
+.rounded(@config: 5px){
+	-webkit-border-radius: @config;
+	-moz-border-radius: @config;
+	border-radius: @config;
+}
+
+.linearGradient(@pos:top, @start:#FFF, @end:#000){
+	background: -webkit-linear-gradient(@pos, @start, @end); 
+	background: -moz-linear-gradient(@pos, @start, @end); 
+	background: linear-gradient(@pos, @start, @end); 
+}
+
+html, body{
+	background: #333;
+	color: #EEE;
+	padding:  15px;
+	font: 1em "Lucida Grande", Lucida, Verdana, sans-serif;
+	background: -webkit-linear-gradient(top, rgba(132,132,132,0.65) 0%,rgba(0,0,0,0) 100%), #333;
+	background-position: 0px 145px, 0px 0px;
+}
+
+//MEDIA QUERIES
+@media only screen and (max-device-width:480px){
+	body,html{		
+		padding: 2px;
+	}
+	
+	button{
+		width: 100px;
+	}
+	
+	#sidebar{
+		display: none;
+	}
+	
+	#tasks{
+		width: 100%;
+	}
+}
+
+input, button{
+	font-size: 1.25em;
+}
+
+button{
+	width: 17%;
+}
+
+input[type="text"]{
+	width: 80%;
+}
+
+h1,h2,h3{
+	font-family: 'Permanent Marker', cursive;
+
+	text-shadow: rgba(0,0,0,0.5) -1px 0, rgba(0,0,0,0.3) 0 -1px, rgba(255,255,255,0.5) 0 1px, rgba(0,0,0,0.3) -1px -2px;
+}
+
+header{
+	background: none;
+	
+	h1{
+		line-height: 0;
+		font-size: 2.8em;
+		margin: 10px 0 55px 0;
+		color: #999;
+
+
+	}
+}
+
+#sidebar{
+	padding-top:10px;
+}
+
+#importTask p {
+	width:200px;
+	height:75px;
+	border:dashed 2px #CCC;
+	text-align: center;
+	margin-bottom:10px;
+}
+
+#importTask p.hover{
+	border:solid 2px yellow;
+}
+
+#content{
+	margin: 30px 0px;
+	width: 100%;
+
+	/*Enable flex box positioning on #content*/
+	display: -webkit-box;
+	-webkit-box-orient: horizontal;
+			
+	display: -moz-box;
+	-moz-box-orient: horizontal;
+
+	display: box;
+	box-orient: horizontal;
+}
+
+#tasks{
+			/*Set FlexBox sizing*/
+		-webkit-box-flex: 4;
+		-moz-box-flex: 4;
+		box-flex: 4;
+
+	ul{
+		list-style: none;
+		width: 80%;
+		padding: 0;
+	}
+	
+	li{
+		display: box;
+		padding: 10px;
+		border: 1px solid #777;
+		background: #444;
+		margin: 10px 0;
+		width: 100%;
+
+		//Shadow for task list items
+		.dropShadow(3px 3px 3px #222);
+		
+		&:hover{
+			cursor:pointer;
+			background: #555;
+		}
+		
+		span {
+			font-style: italic;	
+			font-size:  80%;
+			color: #999;					
+		}
+	}
+
+	/*Add to #tasks style rules*/
+	li:nth-of-type(odd){
+		background: #333;
+		
+		&:hover{
+			background:#555;
+		}
+	}
+
+	li:first-of-type{
+		border-top:solid 2px orange;
+	}
+
+	li:last-of-type{
+		border-bottom:solid 2px orange;
+	}
+}
+
+#userMap{
+	width: 100%;
+	height: 200px;
+	display: block;
+}
+
+#team{
+	
+	ul{
+		padding: 0;
+		list-style: none;
+	}
+	
+	li{
+		display: inline-block;
+		width: 80px;
+		height: 80px;
+		border: 1px solid #777;
+		text-align: center;
+		float: left;
+		margin-right: 10px;
+
+		//Round corners for team member list items
+		.rounded(20px);
+
+		/*Add big border to team list item*/
+		-webkit-box-sizing:border-box;
+		-moz-box-sizing:border-box;
+		box-sizing:border-box;
+		border: 40px solid rgba(0,0,0,.6);
+
+		-webkit-transition: all .5s ease 0s;
+		-moz-transition: all .5s ease 0s;
+		transition: all .5s ease 0s;
+
+		text-indent: -5000px;		
+		background-size: 80px 80px;
+		background-origin: border-box;
+
+		&:nth-of-type(1){
+			background-image: url(todd-1.jpg);
+			
+		}
+
+		&:nth-of-type(2){
+			background-image: url(todd-2.jpg);
+		}
+	}
+
+			/*Add to #team*/
+		li.over{
+			border:1px solid rgba(0,0,0,.6);
+
+			/*Add to team list item over*/
+			-webkit-animation-name: pulse;
+			-webkit-animation-duration: 0.5s;
+			-webkit-animation-iteration-count: infinite;
+			-webkit-animation-direction:alternate;
+			-webkit-animation-timing-function: linear;
+			-webkit-animation-delay: 1s;
+		}
+}
+
+/*CSS3 Animation*/
+@-webkit-keyframes pulse{
+	0%{
+		-webkit-box-shadow: 0px 0px 5px yellow;
+		box-shadow: 0px 0px 5px yellow;
+	}
+	
+	50%{
+		-webkit-box-shadow: 0px 0px 10px orange;
+		box-shadow: 0px 0px 10px orange;
+	}
+	
+	100%{
+		-webkit-box-shadow: 0px 0px 15px red;
+		box-shadow: 0px 0px 15px red;
+	}
+}
+
+//CSS3 Button
+button {
+	display: inline-block;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 14px/100% Arial, Helvetica, sans-serif;
+	padding: .5em 2em .55em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+button:hover {
+	text-decoration: none;
+}
+button:active {
+	position: relative;
+	top: 1px;
+}
+/* blue */
+.blue {
+    color: #d9eef7;
+    border: solid 1px #0076a3;
+    background: #0095cd;
+    background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+    background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+    filter:  ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='#00adee', endColorstr='#0078a5')";
+}
+.blue:hover {
+    background: #007ead;
+    background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+    background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+    filter:  ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='#0095cc', endColorstr='#00678e')";
+}
+.blue:active {
+    color: #80bed6;
+    background: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));
+    background: -moz-linear-gradient(top,  #0078a5,  #00adee);
+    filter:  ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee')";
+}
+
+
+
+
