@@ -1,0 +1,8 @@
+/*Add to #tasks style rules*/
+li:nth-of-type(odd){
+	background: #333;
+	
+	&:hover{
+		background:#555;
+	}
+}

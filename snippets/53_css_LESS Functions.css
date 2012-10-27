@@ -1,0 +1,17 @@
+.dropShadow(@config: 3px 3px 3px #333){
+	-webkit-box-shadow: @config;
+	-moz-box-shadow: @config;
+	box-shadow: @config;
+}
+
+.rounded(@config: 5px){
+	-webkit-border-radius: @config;
+	-moz-border-radius: @config;
+	border-radius: @config;
+}
+
+.linearGradient(@pos:top, @start:#FFF, @end:#000){
+	background: -webkit-linear-gradient(@pos, @start, @end); 
+	background: -moz-linear-gradient(@pos, @start, @end); 
+	background: linear-gradient(@pos, @start, @end); 
+}

@@ -1,0 +1,9 @@
+/*Add big border to team list item*/
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+box-sizing:border-box;
+border: 40px solid rgba(0,0,0,.6);
+
+-webkit-transition: all .5s ease 0s;
+-moz-transition: all .5s ease 0s;
+transition: all .5s ease 0s;

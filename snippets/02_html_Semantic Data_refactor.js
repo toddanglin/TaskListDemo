@@ -1,0 +1,1 @@
+tasklist.init("#btnSaveTask", "#lstTasks", "#txtTask");

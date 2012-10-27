@@ -1,0 +1,17 @@
+/*CSS3 Animation*/
+@-webkit-keyframes pulse{
+	0%{
+		-webkit-box-shadow: 0px 0px 5px yellow;
+		box-shadow: 0px 0px 5px yellow;
+	}
+	
+	50%{
+		-webkit-box-shadow: 0px 0px 10px orange;
+		box-shadow: 0px 0px 10px orange;
+	}
+	
+	100%{
+		-webkit-box-shadow: 0px 0px 15px red;
+		box-shadow: 0px 0px 15px red;
+	}
+}

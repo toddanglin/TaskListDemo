@@ -1,0 +1,4 @@
+/*Set FlexBox sizing*/
+-webkit-box-flex: 4;
+-moz-box-flex: 4;
+box-flex: 4;

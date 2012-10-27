@@ -1,0 +1,14 @@
+<script src="scripts/storage.idb.js"></script>
+<script src="scripts/storage.sql.js"></script>
+<script type="text/javascript">
+	if(Modernizr.indexeddb){
+		window.storage = storageIDB;
+	}else{
+		window.storage = storageSQL;
+	}
+	
+	var io;
+	if(typeof(io) === undefined){
+		io = {};
+	}
+</script>

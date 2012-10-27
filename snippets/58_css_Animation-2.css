@@ -1,0 +1,7 @@
+/*Add to team list item over*/
+-webkit-animation-name: pulse;
+-webkit-animation-duration: 0.5s;
+-webkit-animation-iteration-count: infinite;
+-webkit-animation-direction:alternate;
+-webkit-animation-timing-function: linear;
+-webkit-animation-delay: 1s;

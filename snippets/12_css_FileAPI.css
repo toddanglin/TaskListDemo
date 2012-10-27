@@ -1,0 +1,15 @@
+#sidebar{
+	padding-top:10px;
+}
+
+#importTask p {
+	width:200px;
+	height:75px;
+	border:dashed 2px #CCC;
+	text-align: center;
+	margin-bottom:10px;
+}
+
+#importTask p.hover{
+	border:solid 2px yellow;
+}
