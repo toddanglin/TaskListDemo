@@ -9,6 +9,9 @@ Since this is a HTML5 demo app, the primary goal is to show-off features availab
 
 For the best experience, use an up-to-date [Chrome browser](https://www.google.com/chrome).
 
+###Internet Explorer
+The complete demo will only work in IE10+ due to the use of HTML5 features such as IndexedDB and Web Sockets (which are not available in <= IE9). With the use of more complex polyfills, the demo could be made to work in IE9, but that is out of scope for this demo today.
+
 ##HTML5 Features
 The demo showcases many HTML5 technologies, some broadly usable today, some less likely to work in all browsers. Today, the demo includes the following:
 
@@ -36,6 +39,18 @@ In addition to HTML5, the demo also features many modern CSS3 techniques, includ
 - CSS Transitions
 - CSS Animations
 - Media Queries
+
+##Running the Demo
+If you want to try the complete demo on your machine, follow these steps:
+
+1. Clone this repository to your complete (or download the complete repo ZIP archive)
+2. Configure your local development web server to treat the repo folder as a web root
+3. Load the "index.html" file from your localhost
+
+If you are using a supported browser, the demo should load directly.
+
+###Why use a web server?
+Certain browsers, such as Chrome, impose additional restrictions on HTML pages loaded from the file:// protocol. To avoid unexpected errors, it is best to load the HTML pages from a local web server.
 
 ## Background
 This demo was created by [Todd Anglin](http://twitter.com/toddanglin) for use in a full-day HTML5 workshop. It is intentionally simple in places to facilitate teaching. Special techniques, including polyfills, are only used when needed to make the demo function consistently in modern browsers (such as Chrome and Firefox).
