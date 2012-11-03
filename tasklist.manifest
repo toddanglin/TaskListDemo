@@ -1,13 +1,13 @@
 CACHE MANIFEST
 # Files you want cached for your app to work offline
-# View chace in Chrome: chrome://appcache-internals
+# View cache in Chrome: chrome://appcache-internals
 #v 1.3
 
 content/crazyMan.mp4
 content/site.less
-scripts/modernizr.js
+scripts/modernizr-2.6.1.js
 scripts/storage.sql.js
-scripts/_buildup1.html.js
+scripts/index.html.js
 //ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
 
 #Must be online to use these resources
