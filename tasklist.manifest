@@ -8,11 +8,13 @@ content/site.less
 scripts/modernizr-2.6.1.js
 scripts/storage.sql.js
 scripts/index.html.js
-//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
+scripts/jquery-1.7.1.min.js
 
-#Must be online to use these resources
+#Whitelist
+#Always use online version of these resources (bypass cache)
 NETWORK:
 *
 
 #Offline replacement files 
+#Format: [ONLINE FILE] [OFFLINE FILE]
 FALLBACK:
