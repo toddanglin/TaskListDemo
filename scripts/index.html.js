@@ -10,7 +10,7 @@ tasklist = (function($, m, host, io, storage){
 		$eleTxtTask,
 		_mapEle = $("#userMap")[0],
 		_dbName = "taskListDb",
-		_dBv = 1,
+		_dBv = 2,
 		_socket = null;
 		
 	var _private = {
@@ -305,7 +305,8 @@ tasklist = (function($, m, host, io, storage){
 			    return false;
 			});
 
-			//Drop File handlers
+					//Add to App INIT
+		//Drop File handlers
 			$("#importTask").on("dragover","p", function(e){
 				if (e.originalEvent.preventDefault) e.originalEvent.preventDefault(); // allows us to drop
 				
