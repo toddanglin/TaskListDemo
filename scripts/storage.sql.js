@@ -9,27 +9,27 @@ var storageSQL = (function($, host){
 			var dbSize = 5 * 1024 * 1024; //5MB
 			
 			_dbName = name;
-			
+			_version = version;
+
 			//Creates and names object store (description optional)
 			
-			_db = openDatabase(_dbName, "", "", dbSize, function(db){
+			_db = openDatabase(_dbName, _version, "TasksDB", dbSize, function(db){
 				//Success callback
 				console.log("Database with name "+ _dbName +" created/opened.");					
 
 				_db.transaction(function(tx){
 					tx.executeSql('CREATE TABLE IF NOT EXISTS tasks(id TEXT PRIMARY KEY, text TEXT, timestamp TEXT, user TEXT)',[],
 							function(){
-								console.log("Created table 'tasks' (if needed)");
-								
-								$(host).trigger("TASK_DB_READY");
+								console.log("Created table 'tasks' (if needed)");															
 							},
 							function(){console.log("Failed to create table 'tasks'");}
 					);
 				});
 			});
 
-			console.log("DB Version", _db.version);
-			
+			$(host).trigger("TASK_DB_READY");
+
+			console.log("DB Version", _db.version);			
 		},
 		
 		saveTask: function(task, successCallback, errorCallback) {

@@ -69,10 +69,10 @@ var storageIDB = (function($, host){
 			};
 		},
 		
-		saveTask: function(task, successCallback, errorCallback) {
+		saveTask: function(task, successCallback, errorCallback, transactionCallback) {
 			//Persist for longer term storage to IndexedDb
-			var trans = _db.transaction([_dbName], "readwrite"),
-				store = trans.objectStore(_dbName);
+			var tx = _db.transaction([_dbName], "readwrite"),
+				store = tx.objectStore(_dbName);
 				
 			var request = store.add(task);
 			
@@ -86,10 +86,15 @@ var storageIDB = (function($, host){
 				
 				errorCallback();
 			};
+
+			tx.oncomplete = function(){
+				if(transactionCallback !== undefined){ transactionCallback(); }
+			}
 		},
 		
-		deleteTask: function(key, successCallback, errorCallback){
-			var request = _db.transaction([_dbName], "readwrite").objectStore(_dbName).delete(key);
+		deleteTask: function(key, successCallback, errorCallback, transactionCallback){
+			var tx = _db.transaction([_dbName], "readwrite"),
+				request = tx.objectStore(_dbName).delete(key);
 			
 			request.onsuccess = function() {
 				successCallback();
@@ -101,12 +106,16 @@ var storageIDB = (function($, host){
 				
 				errorCallback();
 			};
+
+			tx.oncomplete = function(){
+				if(transactionCallback !== undefined){ transactionCallback(); }
+			}
 		},
 		
-		updateTask: function(task, successCallback, errorCallback) {
-			var store = _db.transaction([_dbName], "readwrite").objectStore(_dbName),
+		updateTask: function(task, successCallback, errorCallback, transactionCallback) {
+			var tx = _db.transaction([_dbName], "readwrite"),
 				keyRange = IDBKeyRange.only(task.id),
-				cursor = store.openCursor(keyRange);
+				cursor = tx.objectStore(_dbName).openCursor(keyRange);
 			
 			cursor.onsuccess = function(e){
 				var csr = e.target.result;
@@ -128,6 +137,10 @@ var storageIDB = (function($, host){
 				//TODO error logging
 				console.log("Error getting update cursor");
 			};
+
+			tx.oncomplete = function(){
+				if(transactionCallback !== undefined){ transactionCallback(); }
+			}
 		},
 		
 		getAllTasks: function(successCallback, errorCallback){
