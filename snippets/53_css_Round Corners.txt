@@ -1,2 +1,0 @@
-//Round corners for team member list items
-.rounded(20px);

@@ -3,7 +3,8 @@
 //Put entire application in a global variable
 var tasklist = tasklist || {};
 
-//Use self-execution funtion to encapsulate application logic
+//Use IIFE (Immiately Invoked Function Expression) 
+//to encapsulate application logic
 tasklist = (function($, m, host){
 	//Elements
 	var $eleBtnSave,

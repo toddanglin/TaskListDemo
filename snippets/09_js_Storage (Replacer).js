@@ -46,7 +46,7 @@ tasklist = (function($, m, host, io, storage){
 					});
 					
 					_socket.on('rmTask', function(msg){
-						var taskId = parseInt(msg);
+						var taskId = msg;
 						console.log("RM TASK", taskId);
 						api.deleteTask(null, {"taskId": taskId, "broadcast": false})	;
 					});		    
@@ -128,6 +128,7 @@ tasklist = (function($, m, host, io, storage){
 				newTask = opts.task;
 			}else{
 				newTask = {
+					"id": uuid(),
 					"text": txt.val(),
 					"timestamp": new Date(),
 					"user": "SampleUser"
@@ -138,9 +139,10 @@ tasklist = (function($, m, host, io, storage){
 				//Task saved! Clear input, auto save, updated list
 				txt.val("");
 				
-				localStorage.taskAutoSave = "";
-				
-				api.loadAllTasks();
+				localStorage.taskAutoSave = "";		
+
+				//This will only work for WebSQL
+				api.loadAllTasks();	
 				
 				//Update new task object with key value
 				newTask.id = key;
@@ -153,6 +155,12 @@ tasklist = (function($, m, host, io, storage){
 				//Error handler
 				//Most common error is due to duplicate keys (same machine)
 				//(reload list anyway)
+				console.log("Error saving task");
+			},
+			function(){
+				//This will only work for IndexedDB
+				//Transaction complete. Refresh list now.
+				console.log("Transaction complete. Refresh.");
 				api.loadAllTasks();
 			});
 		},
@@ -173,6 +181,9 @@ tasklist = (function($, m, host, io, storage){
 		
 			storage.deleteTask(key, function(){
 				//Rebind the data display
+				console.log("Delete Done.");
+
+				//This will only work for WebSQL
 				api.loadAllTasks();
 				
 				//Update other clients with WebSockets
@@ -183,6 +194,12 @@ tasklist = (function($, m, host, io, storage){
 			function(){
 				//Most common error is due to item already being deleted
 				//(Go ahead and refresh list)
+				console.log("Delete Error. Refresh");
+			},
+			function(){
+				//This will work for IndexedDB
+				//Transaction complete. Refresh list now.
+				console.log("Transaction complete. Refresh.");
 				api.loadAllTasks();
 			});
 		},
@@ -196,6 +213,11 @@ tasklist = (function($, m, host, io, storage){
 				t.user = newUser;
 				
 				api.updateTask(t, function(){
+					//OnSuccess for WebSQL
+					api.loadAllTasks();
+				},
+				function(){
+					//Transaction complete for IndexedDB
 					api.loadAllTasks();
 				});
 			});						
@@ -203,6 +225,7 @@ tasklist = (function($, m, host, io, storage){
 		
 		loadAllTasks: function(){			
 			storage.getAllTasks(function(result) {
+				console.log("Loaded All Tasks", result);
 				_private.renderList(result);
 			});
 		},
@@ -213,12 +236,16 @@ tasklist = (function($, m, host, io, storage){
 			});
 		},
 		
-		updateTask: function(task, successCallback){
+		updateTask: function(task, successCallback, transactionCallback){
 			storage.updateTask(task, function(t){
 				successCallback(task);
 			},
 			function(){
-			
+				//Error
+			},
+			function(){
+				//Transaction complete (only for IndexedDB)
+				if(transactionCallback !== undefined){ transactionCallback(); }
 			});
 		},
 		
