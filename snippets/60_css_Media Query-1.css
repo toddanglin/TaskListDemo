@@ -1,0 +1,22 @@
+//MEDIA QUERIES
+@media only screen and (max-device-width:480px){
+	body,html{		
+		padding: 2px;
+	}
+	
+	input[type="text"]{
+		width:50%;
+	}
+	
+	button{
+		width: 100px;
+	}
+	
+	#sidebar{
+		display: none;
+	}
+	
+	#tasks{
+		width: 100%;
+	}
+}
