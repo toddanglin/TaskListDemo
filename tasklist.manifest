@@ -3,12 +3,14 @@ CACHE MANIFEST
 # View cache in Chrome: chrome://appcache-internals
 #v 1.0
 
-content/crazyMan.mp4
-content/site.less
-scripts/modernizr-2.6.1.js
-scripts/storage.sql.js
-scripts/index.html.js
-scripts/jquery-1.7.1.min.js
+#VARIANT of Manifest to work with JSBin demo
+
+https://jsbin-user-assets.s3.amazonaws.com/toddanglin/crazyMan.mp4
+http://modernizr.com/downloads/modernizr-latest.js
+http://jsbin.com/niwamo/1/
+http://jsbin.com/nuqihe/1/
+http://jsbin.com/ludebi/1/
+https://code.jquery.com/jquery-2.1.1.min.js
 
 #Whitelist ("Do Not Cache")
 #Always use online version of these resources (bypass cache)
@@ -18,4 +20,4 @@ NETWORK:
 #Offline replacement files 
 #Format: [ONLINE FILE/PATH] [OFFLINE FILE]
 FALLBACK:
-/content/online/ /content/offline.png
+https://jsbin-user-assets.s3.amazonaws.com/toddanglin/online.png https://jsbin-user-assets.s3.amazonaws.com/toddanglin/offline.png
