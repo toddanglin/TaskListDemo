@@ -5,3 +5,4 @@
 .settings
 nbproject
 thumbs.db
+node_modules/*
