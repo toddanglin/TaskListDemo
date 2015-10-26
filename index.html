@@ -13,6 +13,12 @@
 	<!--Basic Tag Polyfill + Modernizr API-->
 	<script src="scripts/modernizr-dev.js"></script>		
 
+	<script src="scripts/webcomponents.min.js"></script>
+
+  <!-- Imports custom element -->
+  <link rel="import" href="components/tasklist-video.html">
+	
+
 	<link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
 
 	<link href="content/normalize-2.0.1.css" rel="stylesheet" type="text/css" />	
@@ -60,11 +66,7 @@
 			<!--VIDEO-->			
 			<div style="width:200px;margin: 10px 0;" id="vidHolder">
 				<!--HTML5 First, Fallback to Flash-->
-				<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" width="200" height="200">
-				  <param name="flashvars" value="file=crazyMan.mp4" />
-				  <param name="movie" value="content/player.swf" />
-				  <embed src="content/player.swf" width="200" height="200" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="file=crazyMan.mp4" />
-				</object>
+				<tasklist-video file="crazyMan.mp4" />		
 			</div>
 		</div>
 	</div>
