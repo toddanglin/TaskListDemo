@@ -62,8 +62,8 @@ tasklist = (function($, m, host, io, storage){
 				data = [{"id": 0, "text": "No tasks here. Yay!"}];
 			
 			var newDom = "";
-			$.each(data, function(index, item){
-				newDom += "<li data-task-id=\""+ item.id +"\" draggable='true'>"+ item.text +"<br /><span>Assigned to: "+ item.user+"</span></li>";		
+			data.forEach(item => {
+				newDom += `<li data-task-id='${item.id}' draggable='true'>${item.text}<br /><span>Assigned to: ${item.user}</span></li>`;		
 			});
 			
 			p.empty();
