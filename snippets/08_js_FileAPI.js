@@ -27,16 +27,7 @@
 			  		console.log("FileReader LoadEnd", event, reader.result);
 			  		var taskTxt = reader.result;
 			  		if(taskTxt !== ""){
-			  			//Create task object
-			  			var newTask = {
-							"id": uuid(),
-							"text": taskTxt,
-							"timestamp": new Date(),
-							"user": "SampleUser"
-						};
-
-			  			//Save task
-			  			api.saveTask(null, {"task": newTask, "broadcast": true});
+			  			$eleTxtTask.val(taskTxt);
 			  		}
 			  	};
 
