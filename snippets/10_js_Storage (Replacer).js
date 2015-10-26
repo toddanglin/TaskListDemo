@@ -28,7 +28,7 @@ tasklist = (function($, m, host, io, storage){
 			  	return; //Sockets not available; don't configure
 			  }
 			  
-			  _socket = io.connect('http://nodesocketdemo.jit.su:80/');	
+			  _socket = io.connect('http://socketdemo.mod.bz/');	
 			  
 			  console.log("SOCKET", _socket);		  
 			
@@ -275,19 +275,88 @@ tasklist = (function($, m, host, io, storage){
 			
 			//Init web sockets
 			_private.initSocket();
+			
+			
+			//Drag-Drop Event Handlers
+			$eleListTask.on("dragstart", "li", function(e) {
+				e.originalEvent.dataTransfer.effectAllowed = "copy";
+				e.originalEvent.dataTransfer.setData("Text", this.dataset.taskId);
+});
 
-			if(Modernizr.video.h264 != ""){
-				var vid = document.createElement("video");
-				vid.src = "content/crazyMan.mp4";
-				$(vid).attr("type","video/mp4").attr("autoplay","autoplay").attr("loop","loop").attr("controls","controls").height("200").width("200");
-				
-				$(vid).append("Video not supported");
-				
-				$("#vidHolder").empty().append(vid);
+			$("#team").on("dragover", "li", function(e) {
+				if (e.originalEvent.preventDefault) 					e.originalEvent.preventDefault(); // allows us to drop
+    				this.className = 'over';
+    				e.originalEvent.dataTransfer.dropEffect = 'copy';
+    				return false;
+			});
 
-				//Mute the video volume
-				$("video")[0].volume = 0;
-			}																		
+			$("#team").on("dragleave", "li", function(e) {
+    			this.className = '';
+			});
+			
+			$("#team").on("drop", "li", function(e) {
+				if (e.stopPropagation) e.stopPropagation();
+	
+				var t = e.currentTarget;				
+				t.className = '';
+	
+				//Assign task to target user
+				var newUser = (t.innerText || t.textContent),
+					taskId = e.originalEvent.dataTransfer.getData("Text");
+					console.log("ASSINGING TASK", "TO: "+ newUser, "ID: "+ taskId);
+	
+				api.assignTaskTo(taskId, newUser);
+	
+    			return false;
+			});												
+
+			//Drop File handlers
+			$("#importTask").on("dragover","p", function(e){
+				if (e.originalEvent.preventDefault) e.originalEvent.preventDefault(); // allows us to drop
+				
+				this.className = "hover";
+
+				return false;
+			});
+
+			$("#importTask").on("dragleave dragend", "p",function(e){
+				e.originalEvent.preventDefault();
+
+				this.className = "";
+
+				return false;
+			});
+
+			$("#importTask").on("drop","p", function(e){
+				e.originalEvent.preventDefault();
+				this.className = "";
+
+				var file = e.originalEvent.dataTransfer.files[0],
+			      reader = new FileReader();
+
+			  	reader.onloadend = function(event) {
+			  		console.log("FileReader LoadEnd", event, reader.result);
+			  		var taskTxt = reader.result;
+			  		if(taskTxt !== ""){
+			  			//Create task object
+			  			var newTask = {
+							"id": uuid(),
+							"text": taskTxt,
+							"timestamp": new Date(),
+							"user": "SampleUser"
+						};
+
+			  			//Save task
+			  			api.saveTask(null, {"task": newTask, "broadcast": true});
+			  		}
+			  	};
+
+			  	if(file.type === "text/plain"){
+			  		reader.readAsText(file);
+			  	}
+
+				return false;
+			});						
 		}
 	}
 	

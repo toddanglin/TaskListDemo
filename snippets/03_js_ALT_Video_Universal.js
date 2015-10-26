@@ -1,3 +1,6 @@
+//This snippet is only needed if trying to support a browser
+//that recognizes HTML5 video tag, but doesn't support H264
+//(like older versions of Firefox)
 if(Modernizr.video.h264 != ""){
 	var vid = document.createElement("video");
 	vid.src = "content/crazyMan.mp4";

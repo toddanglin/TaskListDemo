@@ -1,9 +1,3 @@
 /*Enable flex box positioning on #content*/
-display: -webkit-box;
--webkit-box-orient: horizontal;
-		
-display: -moz-box;
--moz-box-orient: horizontal;
-
-display: box;
-box-orient: horizontal;
+display: flex;
+flex-direction: row;
