@@ -354,18 +354,18 @@ tasklist = (function($, m, host, io, storage){
 				return false;
 			});
 
-			if(Modernizr.video.h264 != ""){
-				var vid = document.createElement("video");
-				vid.src = "content/crazyMan.mp4";
-				$(vid).attr("type","video/mp4").attr("autoplay","autoplay").attr("loop","loop").attr("controls","controls").height("200").width("200");
+			// if(Modernizr.video.h264 != ""){
+			// 	var vid = document.createElement("video");
+			// 	vid.src = "content/crazyMan.mp4";
+			// 	$(vid).attr("type","video/mp4").attr("autoplay","autoplay").attr("loop","loop").attr("controls","controls").height("200").width("200");
 				
-				$(vid).append("Video not supported");
+			// 	$(vid).append("Video not supported");
 				
-				$("#vidHolder").empty().append(vid);
+			// 	$("#vidHolder").empty().append(vid);
 
-				//Mute the video volume
-				$("video")[0].volume = 0;
-			}																		
+			// 	//Mute the video volume
+			// 	$("video")[0].volume = 0;
+			// }																		
 		}
 	}
 	
